@@ -3,13 +3,10 @@ from perfis.models import Perfil
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    perfis = Perfil.objects.all()
+    return render(request, 'index.html', { "perfis" : perfis })
 
 def exibir(request, perfil_id):
 
-    perfil = Perfil();
-
-    if perfil_id == '1':
-        perfil = Perfil('Leandro', 'leandro@leandro.com', '878787799', 'HU')
-
+    perfil = Perfil.objects.get(id = perfil_id);
     return render(request, 'perfil.html', { "perfil" : perfil })
